@@ -97,7 +97,8 @@ public class VectorUtility
     /// <returns>单位向量</returns>
     public static Vector3 Normalize(Vector3 v)
     {
-        return v / Magnitude(v);
+        var magnitude = Magnitude(v);
+        return magnitude == 0 ? Vector3.zero : v / Magnitude(v);
     }
     /// <summary>
     /// 计算两个向量之间的夹角,返回值为弧度制
@@ -107,7 +108,8 @@ public class VectorUtility
     /// <returns>弧度制向量夹角</returns>
     public static float AngleRad(Vector3 a, Vector3 b)
     {
-        return Mathf.Acos(Dot(a, b) / Mathf.Sqrt(SqrMagnitude(a) * SqrMagnitude(b)));
+        var s = Mathf.Sqrt(SqrMagnitude(a) * SqrMagnitude(b));
+        return s == 0 ? 0 : Mathf.Acos(Dot(a, b) / s);
     }
     /// <summary>
     /// 计算两个向量之间的夹角，返回值为角度制
@@ -147,7 +149,8 @@ public class VectorUtility
     /// <returns></returns>
     public static Vector3 Project(Vector3 a, Vector3 b)
     {
-        return b * (Dot(a, b) / (SqrMagnitude(b)));//Todo: 验证
+        var sqrMagnitude = SqrMagnitude(b);
+        return sqrMagnitude == 0 ? Vector3.zero : b * (Dot(a, b) / sqrMagnitude);//Todo: 验证
     }
     public static Vector3 Perpendicular(Vector3 v, Vector3 axis)//Todo: 验证
     {
