@@ -190,4 +190,14 @@ public class VectorUtility
     {
         return new Vector3(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x);
     }
+    /// <summary>
+    /// 计算两个向量构成的三角形的面积
+    /// </summary>
+    /// <param name="a">向量A</param>
+    /// <param name="b">向量B</param>
+    /// <returns>三角形的面积</returns>
+    public static float TriangelArea(Vector3 a, Vector3 b)
+    {
+        return Magnitude(Cross(a, b)) / 2;
+    }
 }
